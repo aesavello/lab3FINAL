@@ -45,8 +45,18 @@ int is_equal(void* key1, void* key2){
 // Inicialice el índice current a -1.
 
 HashMap * createMap(long capacity) {
+    HashMap *mapa= (HashMap*)malloc(sizeof(HashMap));
 
-    return NULL;
+    if(mapa==NULL){
+        return NULL;
+    }
+
+    mapa->buckets= (Pair**)calloc(capacity,sizeof(Pair*));
+    mapa->capacity = capacity;
+    mapa->size=0;
+    mapa->current = -1;
+
+    return mapa;
 }
 
 // 2. Implemente la función void insertMap(HashMap * map, char * key, void * value). 
@@ -60,7 +70,29 @@ HashMap * createMap(long capacity) {
 
 void insertMap(HashMap * map, char * key, void * value) {
 
+    float pCapacidad = ((float)map->size / (float)map->capacity) *100.0;
+    if(pCapacidad >= 70){
+        enlarge(map);
+    }
+
+    long pos = hash(key,map->capacity);
+    Pair * newPair = createPair(key,value);
+
+    if (newPair == NULL){
+        return;
+    }
+    while((map->buckets[pos] != NULL) && (map->buckets[pos]->key != NULL)){
+        pos = (pos+1)%map->capacity;
+    }
+    map->current = pos;
+    map->buckets[pos] = newPair;
+    map->size ++;
 }
+
+
+
+
+
 
 // 3. Implemente la función Pair * searchMap(HashMap * map, char * key), la cual retorna el Pair asociado a la clave ingresada. 
 // Recuerde que para buscar el par debe:
@@ -70,7 +102,18 @@ void insertMap(HashMap * map, char * key, void * value) {
 // Recuerde actualizar el índice current a la posición encontrada. Recuerde que el arreglo es circular.
 
 Pair * searchMap(HashMap * map,  char * key) {   
+    //ARREGLO CIRCULAR
+    long pos =hash(key, map->capacity);
+    long posInicial = pos;
 
+    while((map->buckets[pos] != NULL) && (map->buckets[pos]->key != NULL)){
+        if(is_equal(key,map->buckets[pos]->key)){
+            map->current = pos;
+            return map->buckets[pos];
+        }
+        pos = (pos+1)%map->capacity;
+        if(pos==posInicial) break;
+    }
 
     return NULL;
 }
@@ -82,7 +125,11 @@ Pair * searchMap(HashMap * map,  char * key) {
 // Recuerde actualizar la variable size.
 
 void eraseMap(HashMap * map,  char * key) {    
-
+    Pair* borrar = searchMap(map,key);
+    if(borrar != NULL){
+        borrar->key =NULL;
+        map->size--;
+    }
 
 }
 
@@ -91,12 +138,22 @@ void eraseMap(HashMap * map,  char * key) {
 // Recuerde actualizar el índice.
 
 Pair * firstMap(HashMap * map) {
-
+    for(long i=0 ; i<map->capacity; i++){
+        if((map->buckets[i] != NULL) && (map->buckets[i]->key != NULL)){
+            map->current = i;
+            return map->buckets[i];
+        }
+    }
     return NULL;
 }
 
 Pair * nextMap(HashMap * map) {
-
+    for(long i = map->current+1 ; i<map->capacity; i++){
+        if((map->buckets[i] != NULL) && (map->buckets[i]->key != NULL)){
+            map->current = i;
+            return map->buckets[i];
+        }
+    }
     return NULL;
 }
 
@@ -115,6 +172,24 @@ Pair * nextMap(HashMap * map) {
 void enlarge(HashMap * map) {
     enlarge_called = 1; //no borrar (testing purposes)
 
+    Pair** aux= map->buckets;
+
+    long elemMovidos=0;
+    long auxSize = map->size;
+
+    map->buckets = (Pair**)calloc((map->capacity)*2,sizeof(Pair*));
+    map->capacity *= 2;
+    map->size = 0;
+
+
+    for(long i=0; i<(map->capacity/2);i++){
+        if((aux[i] != NULL) && (aux[i]->key != NULL)){
+            insertMap(map,aux[i]->key,aux[i]->value);
+            elemMovidos +=1;
+            if (elemMovidos == auxSize) break;
+        }
+    }
+    free(aux);
 
 }
 
