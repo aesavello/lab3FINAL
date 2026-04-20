@@ -1,0 +1,168 @@
+Thu Apr 16 08:12:17 PM UTC 2026: 
+ hashmap.c | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+Compilation failed
+In file included from test.c:5:
+hashmap.c: In function ‘insertMap’:
+hashmap.c:63:5: error: expected ‘,’ or ‘;’ before ‘if’
+   63 |     if(pCapacidad >= 70){
+      |     ^~
+hashmap.c:66:5: error: ‘pos’ undeclared (first use in this function); did you mean ‘pow’?
+   66 |     pos = hash(key,map->capacity);
+      |     ^~~
+      |     pow
+hashmap.c:66:5: note: each undeclared identifier is reported only once for each function it appears in
+hashmap.c:67:5: error: ‘newPair’ undeclared (first use in this function); did you mean ‘Pair’?
+   67 |     newPair = createPair(key,value);
+      |     ^~~~~~~
+      |     Pair
+hashmap.c:62:11: error: unused variable ‘pCapacidad’ [-Werror=unused-variable]
+   62 |     float pCapacidad = ((float)map->size / (float)map->capacity) *100.0
+      |           ^~~~~~~~~~
+cc1: all warnings being treated as errors
+118b748
+Thu Apr 16 08:13:25 PM UTC 2026: 
+ hashmap.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+ tests:  0|0
+89b7c25
+Thu Apr 16 08:15:59 PM UTC 2026: 
+ hashmap.c | 3 +++
+ 1 file changed, 3 insertions(+)
+ tests:  0|0
+af122c3
+Thu Apr 16 08:20:40 PM UTC 2026: 
+ hashmap.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+Compilation failed
+In file included from test.c:5:
+hashmap.c: In function ‘insertMap’:
+hashmap.c:74:23: error: ‘m’ undeclared (first use in this function); did you mean ‘tm’?
+   74 |         pos = (pos+1)%m->capacity;
+      |                       ^
+      |                       tm
+hashmap.c:74:23: note: each undeclared identifier is reported only once for each function it appears in
+8bdf168
+Thu Apr 16 08:20:54 PM UTC 2026: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  0|0
+698eb3b
+Thu Apr 16 08:23:17 PM UTC 2026: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  0|0
+e11adb9
+Thu Apr 16 08:24:30 PM UTC 2026: 
+ hashmap.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+ tests:  0|0
+03d2d9a
+Thu Apr 16 08:24:48 PM UTC 2026: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  0|0
+7a15db5
+Thu Apr 16 08:27:21 PM UTC 2026: 
+ hashmap.c | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+ tests:  4|5
+total_score: 15/60
+57140c8
+Sun Apr 19 10:46:02 PM UTC 2026: 
+ hashmap.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+ tests:  4|5
+total_score: 15/60
+236f5d3
+Sun Apr 19 10:46:43 PM UTC 2026: 
+ hashmap.c | 1 +
+ 1 file changed, 1 insertion(+)
+ tests:  4|5
+total_score: 15/60
+1e69b0e
+Sun Apr 19 10:47:25 PM UTC 2026: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  4|5
+total_score: 15/60
+f0dcf81
+Sun Apr 19 10:47:47 PM UTC 2026: 
+ hashmap.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+Compilation failed
+In file included from test.c:5:
+hashmap.c: In function ‘createMap’:
+hashmap.c:48:30: error: too few arguments to function ‘calloc’
+   48 |     HashMap *mapa= (HashMap*)calloc(sizeof(HashMap));
+      |                              ^~~~~~
+In file included from test.c:2:
+/nix/store/41pf3md9zgpda9kwh6rzn5kaddf7i0lp-glibc-2.40-66-dev/include/stdlib.h:675:14: note: declared here
+  675 | extern void *calloc (size_t __nmemb, size_t __size)
+      |              ^~~~~~
+58f3791
+Sun Apr 19 10:48:24 PM UTC 2026: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  4|5
+total_score: 15/60
+d592f39
+Sun Apr 19 10:49:03 PM UTC 2026: 
+ hashmap.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+ tests:  4|5
+total_score: 15/60
+bc4139a
+Sun Apr 19 10:49:34 PM UTC 2026: 
+ hashmap.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+ tests:  5|4
+total_score: 20/60
+ad4e836
+Sun Apr 19 10:55:45 PM UTC 2026: 
+ hashmap.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+ tests:  8|3
+total_score: 30/60
+71b6f1d
+Sun Apr 19 11:03:39 PM UTC 2026: 
+ hashmap.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+ tests:  11|2
+total_score: 40/60
+c98a06d
+Sun Apr 19 11:07:15 PM UTC 2026: 
+ hashmap.c | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
+Compilation failed
+In file included from test.c:5:
+hashmap.c: In function ‘firstMap’:
+hashmap.c:142:55: error: ‘pos’ undeclared (first use in this function); did you mean ‘pow’?
+  142 |         if((map->buckets[i] != NULL) && (map->buckets[pos]->key != NULL)){
+      |                                                       ^~~
+      |                                                       pow
+hashmap.c:142:55: note: each undeclared identifier is reported only once for each function it appears in
+hashmap.c: In function ‘nextMap’:
+hashmap.c:152:55: error: ‘pos’ undeclared (first use in this function); did you mean ‘pow’?
+  152 |         if((map->buckets[i] != NULL) && (map->buckets[pos]->key != NULL)){
+      |                                                       ^~~
+      |                                                       pow
+13641c5
+Sun Apr 19 11:07:50 PM UTC 2026: 
+ hashmap.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ tests:  16|1
+total_score: 50/60
+0a6f04f
+Sun Apr 19 11:18:07 PM UTC 2026: 
+ hashmap.c | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+ tests:  16|1
+total_score: 50/60
+f7f535c
+Sun Apr 19 11:18:59 PM UTC 2026: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  17|0
+total_score: 60/60
+738aba9
